@@ -14,12 +14,10 @@ string Library::abreSQL (string ArquivoSQL){
 	fstream arquivo;
 	arquivo.open (ArquivoSQL.c_str(), fstream::in);
 
-	if (arquivo.is_open())
-	{
+	if (arquivo.is_open()){
 		while (getline(arquivo,linha_arquivo))
-		{
 			query += linha_arquivo;
-		}
+		
 		arquivo.close();
 
 	}
