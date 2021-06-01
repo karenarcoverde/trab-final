@@ -19,7 +19,6 @@ string Library::abreSQL (string ArquivoSQL){
 			query += linha_arquivo;
 		
 		arquivo.close();
-
 	}
 	else
 		cout << "Erro ao abrir o arquivo." << endl;
