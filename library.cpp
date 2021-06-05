@@ -1,3 +1,6 @@
+/***************************************************************************/
+/*************************** library.cpp  *********************************/
+
 #include <iostream>
 #include <sqlite3.h>
 #include <fstream>
@@ -44,7 +47,7 @@ void Library::criaTabela (){
 		sqlite3_free(erro);
 	}
 	else
-		cout << "Tabela criada. " << endl;
+		cout << "\nTabela criada. \n" << endl;
 
 	sqlite3_close(library);
 }
@@ -75,5 +78,13 @@ void Library::inserirLivro (string tituloLivro, string autorLivro, string genero
 		sqlite3_free (erro);
 	}
 	else
-		cout << "Livro inserido na Biblioteca!" << endl;
+		cout << "\nLivro inserido na Biblioteca!\n" << endl;
 }
+
+/*
+
+bool Library::pesquisaNomeLivro (string tituloLivro){
+
+		bool livro_existe = false;
+		query = "SELECT * FROM LIVROS;";
+} */
