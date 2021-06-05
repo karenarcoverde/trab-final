@@ -40,7 +40,7 @@ void Library::criaTabela (){
 
 	info_sql = sqlite3_exec(library, query.c_str(), NULL, 0, & erro);
 	if (info_sql != SQLITE_OK){
-		cout << "Erro ao criar a tabela." << endl;
+		/*tabela ja foi criada */
 		sqlite3_free(erro);
 	}
 	else
