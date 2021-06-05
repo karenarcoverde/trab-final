@@ -10,12 +10,13 @@ using namespace std;
 
 
 class Library{
-	
+
 	public:
 		void criaTabela();
-		string abreSQL(string);		
-		
+		string abreSQL(string);
+		void inserirLivro (string, string, string, string, string);
+
 	private:
-		sqlite3* library;	
+		sqlite3* library;
 };
 #endif
