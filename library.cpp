@@ -74,11 +74,41 @@ void Library::inserirLivro (string tituloLivro, string autorLivro, string genero
 		cout << erro << endl;
 
 	if (info_sql != SQLITE_OK){
-		cout << "Erro ao acessar a tabela." << endl;
+		cout << "\nErro ao acessar a tabela.\n" << endl;
 		sqlite3_free (erro);
 	}
 	else
 		cout << "\nLivro inserido na Biblioteca!\n" << endl;
+
+	sqlite3_close(library);
+}
+
+
+void Library::removerLivro (string tituloLivro){
+
+		char *erro;
+		string query = "";
+		int info_sql = 0;
+
+		query = abreSQL ("./remove_livro.sql");
+
+		query.replace (query.find ("tituloLivro"), string ("tituloLivro").length(), tituloLivro);
+
+		sqlite3_open("livros.db", &library);
+		info_sql = sqlite3_exec (library, query.c_str(), NULL, 0, & erro);
+
+		if (erro != NULL)
+				cout << erro << endl;
+
+		if (info_sql != SQLITE_OK){
+				cout << "\nErro ao acessar tabela.\n" << endl;
+			  sqlite3_free (erro);
+		}
+
+		else
+				cout << "\nLivro removido da Biblioteca!\n" << endl;
+
+		sqlite3_close(library);
 }
 
 /*

@@ -33,10 +33,10 @@ int main (){
 		switch (opcao_menu)
 		{
 		case 1:
-			cout << "\nTitulo: " << endl;
-			cin.clear();
-			cin.ignore();
-			getline (cin, tituloLivro);
+				cout << "\nTitulo: " << endl;
+				cin.clear();
+				cin.ignore();
+				getline (cin, tituloLivro);
 
 			/* verifica se ja existe esse nome do livro*/
 			/*livro_existe = library.pesquisaNomeLivro (string tituloLivro); */
@@ -52,14 +52,20 @@ int main (){
 				getline (cin, generoLivro);
 
 				livros.inserirLivro (tituloLivro, autorLivro, generoLivro, "Disponivel", "-");
+				break;
 
-
-
-			break;
-		/*
 		case 2:
-			break;
+			/*verifica se o livro esta na biblioteca */
+			/* livro_existe = library.pesquisaNomeLivro (string tituloLivro); */
 
+			/*if (!livro_existe){*/
+				cout << "\nTitulo: " << endl;
+				cin.ignore();
+				getline (cin, tituloLivro);
+
+				livros.removerLivro (tituloLivro);
+				break;
+		/*
 		case 3:
 			break;
 		case 4:

@@ -17,6 +17,7 @@ class Library{
 		void criaTabela();
 		string abreSQL(string);
 		void inserirLivro (string, string, string, string, string);
+		void removerLivro (string);
 		/*bool pesquisaNomeLivro (string);*/
 
 
