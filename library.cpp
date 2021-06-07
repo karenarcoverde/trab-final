@@ -111,6 +111,37 @@ void Library::removerLivro (string tituloLivro){
 		sqlite3_close(library);
 }
 
+void Library::mostraLivros (){
+			const unsigned char* coluna1;
+			const unsigned char* coluna2;
+			const unsigned char* coluna3;
+			const unsigned char* coluna4;
+			const unsigned char* coluna5;
+
+			string query = "";
+
+			query = abreSQL("./mostra_tabela.sql");
+			sqlite3_open ("livros.db", &library);
+
+			sqlite3_prepare_v2 (library, query.c_str(), -1, &stmt, 0);
+
+			while (sqlite3_step (stmt) != SQLITE_DONE){
+						coluna1 = sqlite3_column_text (stmt, 0);
+						coluna2 = sqlite3_column_text (stmt, 1);
+						coluna3 = sqlite3_column_text (stmt, 2);
+						coluna4 = sqlite3_column_text (stmt, 3);
+						coluna5 = sqlite3_column_text (stmt, 4);
+
+						cout << "\tTITULO: " << coluna1 << endl;
+						cout << "\tAUTOR: " << coluna2 << endl;
+						cout << "\tGENERO: " << coluna3 << endl;
+						cout << "\tSTATUS: " << coluna4 << endl;
+						cout << "\tEMAIL: " << coluna5 << endl;
+						cout << "\n" << endl;
+			}
+			sqlite3_close(library);
+}
+
 /*
 
 bool Library::pesquisaNomeLivro (string tituloLivro){

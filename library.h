@@ -18,11 +18,13 @@ class Library{
 		string abreSQL(string);
 		void inserirLivro (string, string, string, string, string);
 		void removerLivro (string);
+		void mostraLivros ();
 		/*bool pesquisaNomeLivro (string);*/
 
 
 	private:
 		sqlite3* library;
+		sqlite3_stmt* stmt;
 
 };
 #endif

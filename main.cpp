@@ -65,9 +65,12 @@ int main (){
 
 				livros.removerLivro (tituloLivro);
 				break;
-		/*
+
 		case 3:
+			livros.mostraLivros();
 			break;
+
+		/*
 		case 4:
 			break;
 		case 5:
