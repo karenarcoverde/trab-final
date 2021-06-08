@@ -19,7 +19,7 @@ class Library{
 		void inserirLivro (string, string, string, string, string);
 		void removerLivro (string);
 		void mostraLivros ();
-		/*bool pesquisaNomeLivro (string);*/
+		bool pesquisaNomeLivro (string, bool);
 
 
 	private:

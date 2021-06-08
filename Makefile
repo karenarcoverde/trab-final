@@ -1,22 +1,27 @@
 CXX = g++ 
-CXFLAGS = -Wall -std=c++11 -I
+CXFLAGS = -Wall -std=c++11 -I 
 
-OBJS = library.o main.o
-LIBS = sqlite3
+LIBS = -lsqlite3
 
+executable = programa
 
-PROGRAM  = library
-all: $(PROGRAM)
+all: $(executable)
 
-
-$(PROGRAM): $(OBJS)
+$(executable): library.o main.o
 	$(CXX) -o $@ $^ $(CXFLAGS) -l $(LIBS)
 
-cpp.o:
-	$(CXX) -c -o $@ $< $(CXFLAGS) -l $(LIBS)  
+main.o: main.cpp library.cpp library.h
+	$(CXX) -c -o $@ $< $(CXFLAGS) -l $(LIBS)
+
+library.o: library.cpp library.h
+	$(CXX) -c -o $@ $< $(CXFLAGS) -l $(LIBS)
+
+
+.PHONY : clean
+
 
 clean:
-	rm -f *.o $(PROGRAM)
+	rm $(executable) *.o
 
 
 
