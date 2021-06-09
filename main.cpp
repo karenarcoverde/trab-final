@@ -78,9 +78,15 @@ int main (){
 			livros.mostraLivros();
 			break;
 
-		/*
 		case 4:
+			cout << "\nTitulo: " << endl;
+			cin.ignore();
+			getline (cin, tituloLivro);
+			
+			if (tituloLivro == " ") cout << "Nome inválido!" << endl;
+			else livros.pesquisaNomeLivroLike(tituloLivro);
 			break;
+		/*
 		case 5:
 			break;
 		case 6;
