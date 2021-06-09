@@ -176,7 +176,7 @@ bool Library::pesquisaNomeLivro (string tituloLivro, bool imprimir = true){
 	if (sqlite3_step(stmt) != SQLITE_DONE){
 		livro_existe = true;
 	}
-
+	while (sqlite3_step (stmt) != SQLITE_DONE);
 	//imprime usando o callback definido acima
 	if (imprimir)
 		info_sql = sqlite3_exec(library, query.c_str(), callback, NULL, &erro);
