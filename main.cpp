@@ -65,11 +65,13 @@ int main (){
 			getline (cin, tituloLivro);
 			/*verifica se o livro esta na biblioteca */
 			livro_existe = livros.pesquisaNomeLivro (tituloLivro, false);
-			
+
 			if (livro_existe)
 					livros.removerLivro (tituloLivro);
-			else
+			else{
+				cin.clear();
 				cout << "\nLivro nao consta na biblioteca. Digite corretamente.\n" << endl;
+			}
 			break;
 
 		case 3:
