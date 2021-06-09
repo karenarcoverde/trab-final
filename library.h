@@ -19,8 +19,8 @@ class Library{
 		void inserirLivro (string, string, string, string, string);
 		void removerLivro (string);
 		void mostraLivros ();
-		bool pesquisaNomeLivro (string, bool);
-
+		bool pesquisaNomeLivro (string, bool); //nome exato
+		void pesquisaNomeLivroLike (string); //busca nome que contenha a string
 
 	private:
 		sqlite3* library;
