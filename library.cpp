@@ -197,4 +197,36 @@ bool Library::pesquisaNomeLivro (string tituloLivro, bool imprimir = true){
 	
 	sqlite3_close(library);
 	return livro_existe;
-} 
+}
+
+void Library::pesquisaNomeLivroLike (string tituloLivro){
+
+	int info_sql = 0;
+	char *erro;
+	string query = "";
+
+	//Abre arquivo SQL correponde a query de busca pelo nome e substitui a string referente ao titulo
+	query = abreSQL("./busca_por_nome_like.sql");
+	query.replace (query.find ("tituloLivro"), string ("tituloLivro").length(), "%" + tituloLivro + "%");
+	
+	//abre o banco de dados
+	sqlite3_open ("livros.db", &library);
+	sqlite3_prepare_v2 (library, query.c_str(), -1, &stmt, 0);
+
+	//imprime usando o callback definido assima
+	info_sql = sqlite3_exec(library, query.c_str(), callback, NULL, &erro);
+
+	//Checagem de erros
+	if (erro != NULL)
+		cout << erro << endl;
+
+	if (info_sql != SQLITE_OK){
+		cerr << "Erro ao acessar tabela" << endl;
+		sqlite3_free (erro);
+	}
+	else{
+		cout << "Pesquisa realizada com sucesso" << endl;
+	}
+		
+	sqlite3_close(library);
+}
