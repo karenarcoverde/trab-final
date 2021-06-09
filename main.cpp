@@ -13,8 +13,8 @@ int main (){
 	string tituloLivro;
 	string autorLivro;
 	string generoLivro;
-	bool livro_existe; 
-		
+	bool livro_existe;
+
 	livros.criaTabela ();
 
 	while (opcao_menu != 7){
@@ -54,19 +54,23 @@ int main (){
 
 				livros.inserirLivro (tituloLivro, autorLivro, generoLivro, "Disponivel", "-");
 			}
+			else
+				cout << "\nEsse livro ja existe na biblioteca. Digite novamente.\n" << endl;
 			break;
 
 		case 2:
+
+			cout << "\nTitulo: " << endl;
+			cin.ignore();
+			getline (cin, tituloLivro);
 			/*verifica se o livro esta na biblioteca */
 			livro_existe = livros.pesquisaNomeLivro (tituloLivro, false);
-
-			if (livro_existe){
-				cout << "\nTitulo: " << endl;
-				cin.ignore();
-				getline (cin, tituloLivro);
-
-				livros.removerLivro (tituloLivro);
-				break;
+			
+			if (livro_existe)
+					livros.removerLivro (tituloLivro);
+			else
+				cout << "\nLivro nao consta na biblioteca. Digite corretamente.\n" << endl;
+			break;
 
 		case 3:
 			livros.mostraLivros();
