@@ -97,6 +97,7 @@ int main (){
 
 		default:
 			cout << "Operacao invalida, escolha uma operacao existente. " << endl;
+			cin.clear();
 			cin.ignore();
 		}
 	}
