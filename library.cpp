@@ -213,7 +213,7 @@ void Library::pesquisaNomeLivroLike (string tituloLivro){
 	sqlite3_open ("livros.db", &library);
 	sqlite3_prepare_v2 (library, query.c_str(), -1, &stmt, 0);
 
-	//imprime usando o callback definido assima
+	//imprime usando o callback definido acima
 	info_sql = sqlite3_exec(library, query.c_str(), callback, NULL, &erro);
 
 	//Checagem de erros
