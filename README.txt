@@ -37,5 +37,5 @@ O usuário deverá escolher uma opção das citadas abaixo. Ele poderá escolher
 3. Mostrar livros -> Mostra todos os livros no banco de dados e com suas informações (título, autor, gênero, status e email).
 4. Pesquisar livro -> Mostra todos os livros de acordo com a palavra escolhida pelo usuário.
 5. Realizar emprestimo -> O usuário deve escolher o título do livro que deseja fazer o empréstimo.
-6. Realizar devolução -> O usuário deve escolher o título do livro que deseja fazer a devolução.
+6. Realizar devolucao -> O usuário deve escolher o título do livro que deseja fazer a devolução.
 7. Sair -> O programa finaliza.
