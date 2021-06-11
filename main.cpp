@@ -20,16 +20,18 @@ int main (){
 	livros.criaTabela ();
 
 	opcao_menu = 0;
-	while (opcao_menu != 7){
+	while (opcao_menu != 9){
 
 		cout << "------------------- MENU BIBLIOTECA ----------------------" << endl;
 		cout << "| 1. Inserir livro                                       |" << endl;
 		cout << "| 2. Remover Livro                                       |" << endl;
 		cout << "| 3. Mostrar livros                                      |" << endl;
-		cout << "| 4. Pesquisar livro                                     |" << endl;
+		cout << "| 4. Pesquisar livro por título                          |" << endl;
 		cout << "| 5. Realizar emprestimo                                 |" << endl;
 		cout << "| 6. Realizar devolucao                                  |" << endl;
-		cout << "| 7. Sair                                                |" << endl;
+		cout << "| 7. Pesquisar livro por genero                          |" << endl;
+		cout << "| 8. Pesquisar livro por e-mail                          |" << endl;
+		cout << "| 9. Sair                                                |" << endl;
 		cout << "----------------------------------------------------------" << endl;
 
 		cin >> opcao_menu;
@@ -112,6 +114,22 @@ int main (){
 			break;
 		
 		case 7:
+			
+			cout << "\nGenero: " << endl;
+			cin.ignore();
+			getline (cin, generoLivro);
+			
+			livros.pesquisaGenero(generoLivro);
+			
+			break;
+		case 8:
+			cout << "\nEmail: " << endl;
+			cin.ignore();
+			getline (cin, email);
+			
+			livros.pesquisaEmail(email);
+		       	break;
+		case 9:
 			cout << "Programa encerrado!" << endl;
 			break;
 
