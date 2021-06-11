@@ -30,7 +30,7 @@ Para limpar os objetos e o executável, digite no terminal:
 make clean
 
 Instruções sobre o Menu:
-O usuário deverá escolher uma opção das citadas abaixo. Ele poderá escolher quantas vezes quiser as opções enquanto não for escolhida a opção 7 (Sair).
+O usuário deverá escolher uma opção das citadas abaixo. Ele poderá escolher quantas vezes quiser as opções enquanto não for escolhida a opção 9 (Sair).
 
 1. Inserir Livro -> Insere um livro de acordo com o título, autor e gênero escolhido pelo usuário.  
 2. Remover Livro -> Remove um livro de acordo com o título escolhido pelo usuário.
