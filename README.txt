@@ -35,7 +35,9 @@ O usuário deverá escolher uma opção das citadas abaixo. Ele poderá escolher
 1. Inserir Livro -> Insere um livro de acordo com o título, autor e gênero escolhido pelo usuário.  
 2. Remover Livro -> Remove um livro de acordo com o título escolhido pelo usuário.
 3. Mostrar livros -> Mostra todos os livros no banco de dados e com suas informações (título, autor, gênero, status e email).
-4. Pesquisar livro -> Mostra todos os livros de acordo com a palavra escolhida pelo usuário.
+4. Pesquisar livro por título-> Mostra todos os livros de acordo com o título escolhido pelo usuário.
 5. Realizar emprestimo -> O usuário deve escolher o título do livro que deseja fazer o empréstimo.
 6. Realizar devolucao -> O usuário deve escolher o título do livro que deseja fazer a devolução.
-7. Sair -> O programa finaliza.
+7. Pesquisar livro por genero-> Mostra todos os livros de acordo com o genero escolhido pelo usuário.
+8. Pesquisar livro por e-mail-> Mostra todos os livros de acordo com o e-mail escolhido pelo usuário.
+9. Sair -> O programa finaliza.
