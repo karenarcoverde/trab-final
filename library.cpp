@@ -79,7 +79,7 @@ void Library::inserirLivro (string tituloLivro, string autorLivro, string genero
 
 
 void Library::removerLivro (string tituloLivro){
-
+	cout << endl;
 	char *erro;
 	string query = "";
 	int info_sql = 0;
