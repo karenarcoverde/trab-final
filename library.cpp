@@ -186,7 +186,7 @@ bool Library::pesquisaNomeLivro (string tituloLivro, bool imprimir = true){
 	}
 	else{
 		if (imprimir)
-			cout << "Pesquisa realizada com sucesso" << endl;
+			cout << endl;
 	}
 	
 	sqlite3_close(library);
@@ -219,7 +219,7 @@ void Library::pesquisaNomeLivroLike (string tituloLivro){
 		sqlite3_free (erro);
 	}
 	else{
-		cout << "Pesquisa realizada com sucesso" << endl;
+		cout << endl;
 	}
 		
 	sqlite3_close(library);
@@ -349,7 +349,7 @@ void Library::pesquisaEmail (string email){
 		sqlite3_free (erro);
 	}
 	else{
-		cout << "Pesquisa realizada com sucesso" << endl;
+		cout << endl;
 	}
 		
 	sqlite3_close(library);
@@ -381,7 +381,7 @@ void Library::pesquisaGenero (string genero){
 		sqlite3_free (erro);
 	}
 	else{
-		cout << "Pesquisa realizada com sucesso" << endl;
+		cout << endl;
 	}
 		
 	sqlite3_close(library);
