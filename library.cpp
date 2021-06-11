@@ -225,7 +225,8 @@ void Library::pesquisaNomeLivroLike (string tituloLivro){
 	sqlite3_close(library);
 }
 void Library::realizarEmprestimo(string tituloLivro, string email){
-
+	
+	cout << endl;
 	string query = "";
 	bool livroExiste = pesquisaNomeLivro(tituloLivro, false);
 
@@ -260,9 +261,8 @@ void Library::realizarEmprestimo(string tituloLivro, string email){
 
 }
 void Library::realizarDevolucao(string tituloLivro){
-
-	string query = "";
 	cout << endl;
+	string query = "";
 	bool livroExiste = pesquisaNomeLivro(tituloLivro, false);
 	if(livroExiste){
 
