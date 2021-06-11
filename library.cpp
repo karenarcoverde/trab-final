@@ -139,7 +139,7 @@ void Library::mostraLivros (){
 
 //Callback para imprimir retorno das queries
 static int callback (void *dados, int argc, char** argv, char** colunas){
-	fprintf(stderr, "%s: ", (const char*)dados);
+	//fprintf(stderr, "%s: ", (const char*)dados);
 
 	for (int idx = 0; idx < argc; idx++){
 		printf("%s = %s\n", colunas[idx], argv[idx]  ? argv[idx] : "NULL");
@@ -321,4 +321,69 @@ void Library::updateEmail(string tituloLivro, string email, string status){
 	}
 		
 	sqlite3_close(library);
+}
+
+void Library::pesquisaEmail (string email){
+
+	int info_sql = 0;
+	char *erro;
+	string query = "";
+
+	//Abre arquivo SQL correponde a query de busca pelo nome e substitui a string referente ao titulo
+	query = abreSQL("./busca_por_email.sql");
+	query.replace (query.find ("email"), string ("email").length(), email);
+	
+	//abre o banco de dados
+	sqlite3_open ("livros.db", &library);
+	sqlite3_prepare_v2 (library, query.c_str(), -1, &stmt, 0);
+
+	//imprime usando o callback definido acima
+	info_sql = sqlite3_exec(library, query.c_str(), callback, NULL, &erro);
+
+	//Checagem de erros
+	if (erro != NULL)
+		cout << erro << endl;
+
+	if (info_sql != SQLITE_OK){
+		cerr << "Erro ao acessar tabela" << endl;
+		sqlite3_free (erro);
+	}
+	else{
+		cout << "Pesquisa realizada com sucesso" << endl;
+	}
+		
+	sqlite3_close(library);
+
+}
+void Library::pesquisaGenero (string genero){
+
+	int info_sql = 0;
+	char *erro;
+	string query = "";
+
+	//Abre arquivo SQL correponde a query de busca pelo nome e substitui a string referente ao titulo
+	query = abreSQL("./busca_por_genero.sql");
+	query.replace (query.find ("genero"), string ("genero").length(), genero);
+	
+	//abre o banco de dados
+	sqlite3_open ("livros.db", &library);
+	sqlite3_prepare_v2 (library, query.c_str(), -1, &stmt, 0);
+
+	//imprime usando o callback definido acima
+	info_sql = sqlite3_exec(library, query.c_str(), callback, NULL, &erro);
+
+	//Checagem de erros
+	if (erro != NULL)
+		cout << erro << endl;
+
+	if (info_sql != SQLITE_OK){
+		cerr << "Erro ao acessar tabela" << endl;
+		sqlite3_free (erro);
+	}
+	else{
+		cout << "Pesquisa realizada com sucesso" << endl;
+	}
+		
+	sqlite3_close(library);
+
 }
