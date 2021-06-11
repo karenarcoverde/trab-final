@@ -1,11 +1,5 @@
 /***************************************************************************/
 /*************************** library.cpp  *********************************/
-
-#include <iostream>
-#include <sqlite3.h>
-#include <fstream>
-#include <string>
-
 #include "library.h"
 
 
@@ -226,6 +220,104 @@ void Library::pesquisaNomeLivroLike (string tituloLivro){
 	}
 	else{
 		cout << "Pesquisa realizada com sucesso" << endl;
+	}
+		
+	sqlite3_close(library);
+}
+void Library::realizarEmprestimo(string tituloLivro, string email){
+
+	string query = "";
+	bool livroExiste = pesquisaNomeLivro(tituloLivro, false);
+
+	if(livroExiste){
+
+		const unsigned char* coluna4;
+		query = abreSQL("./busca_status.sql");
+		query.replace (query.find ("tituloLivro"), string ("tituloLivro").length(), tituloLivro );
+		sqlite3_open ("livros.db", &library);
+
+		sqlite3_prepare_v2 (library, query.c_str(), -1, &stmt, 0);
+		
+		sqlite3_step (stmt);
+		coluna4 = sqlite3_column_text (stmt, 0);
+		
+		if ( strcmp((const char*)coluna4, "Disponivel") == 0 ){
+			sqlite3_step (stmt);
+			sqlite3_close(library);
+			updateEmail(tituloLivro, email, "Indisponivel");
+			cout << "Empréstimo realizado com sucesso" << endl;
+		}
+		else {
+			sqlite3_step (stmt);
+			sqlite3_close(library);
+			cout << "Livro já foi emprestado. Tente novamente daqui a algum tempo" << endl;
+	
+		}
+	}
+	else{
+		cout << "A biblioteca não possui esse livro, tente outro titulo" << endl;
+	}
+
+}
+void Library::realizarDevolucao(string tituloLivro){
+
+	string query = "";
+	cout << endl;
+	bool livroExiste = pesquisaNomeLivro(tituloLivro, false);
+	if(livroExiste){
+
+		const unsigned char* coluna4;
+		query = abreSQL("./busca_status.sql");
+		query.replace (query.find ("tituloLivro"), string ("tituloLivro").length(), tituloLivro );
+		sqlite3_open ("livros.db", &library);
+
+		sqlite3_prepare_v2 (library, query.c_str(), -1, &stmt, 0);
+		
+		sqlite3_step (stmt);
+		coluna4 = sqlite3_column_text (stmt, 0);
+		
+		if ( strcmp((const char*)coluna4, "Indisponivel") == 0 ){
+			sqlite3_step (stmt);
+			sqlite3_close(library);
+			updateEmail(tituloLivro, "-", "Disponivel");
+			cout << "Devolucao realizada com sucesso" << endl;
+		}
+		else 
+		{
+			sqlite3_step (stmt);
+			sqlite3_close(library);
+			cout << "Livro não está emprestado. Verifique o titulo do livro e tente novamente" << endl;
+	
+		}
+	}
+	else{
+		cout << "A biblioteca não possui esse livro, tente outro titulo" << endl;
+	}
+}
+
+
+void Library::updateEmail(string tituloLivro, string email, string status){
+	int info_sql = 0;
+	char *erro;
+	string query = "";
+
+
+	query = abreSQL("./update_email.sql");
+	query.replace (query.find ("tituloLivro"), string ("tituloLivro").length(), tituloLivro );
+	query.replace (query.find ("email"), string ("email").length(), email );
+	query.replace (query.find ("status"), string ("status").length(), status );
+	sqlite3_open ("livros.db", &library);
+
+	sqlite3_prepare_v2 (library, query.c_str(), -1, &stmt, 0);
+	info_sql = sqlite3_exec(library, query.c_str(), NULL, 0, &erro);
+
+	//Checagem de erros
+	if (erro != NULL)
+		cout << erro << endl;
+
+	if (info_sql != SQLITE_OK){
+		cerr << "Erro ao acessar tabela" << endl;
+		sqlite3_free (erro);
 	}
 		
 	sqlite3_close(library);
