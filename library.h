@@ -4,7 +4,9 @@
 #include <iostream>
 #include <sqlite3.h>
 #include <vector>
+#include <fstream>
 #include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -21,10 +23,13 @@ class Library{
 		void mostraLivros ();
 		bool pesquisaNomeLivro (string, bool); //nome exato
 		void pesquisaNomeLivroLike (string); //busca nome que contenha a string
+		void realizarEmprestimo(string, string);
+		void realizarDevolucao(string);
 
 	private:
 		sqlite3* library;
 		sqlite3_stmt* stmt;
+		void updateEmail (string, string, string);
 
 };
 #endif
