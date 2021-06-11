@@ -2,6 +2,7 @@
 /*************************** Programa Principal ****************************/
 
 #include "library.h"
+#include <limits>
 
 using namespace std;
 
@@ -13,10 +14,12 @@ int main (){
 	string tituloLivro;
 	string autorLivro;
 	string generoLivro;
+	string email;
 	bool livro_existe;
 
 	livros.criaTabela ();
 
+	opcao_menu = 0;
 	while (opcao_menu != 7){
 
 		cout << "------------------- MENU BIBLIOTECA ----------------------" << endl;
@@ -86,19 +89,39 @@ int main (){
 			if (tituloLivro == " ") cout << "Nome inválido!" << endl;
 			else livros.pesquisaNomeLivroLike(tituloLivro);
 			break;
-		/*
 		case 5:
+			cout << "\nTitulo: " << endl;
+			cin.clear();
+			cin.ignore();
+			getline (cin, tituloLivro);
+			
+			cout << "\nEmail: " << endl;
+			cin.clear();
+			getline (cin, email);
+			
+			livros.realizarEmprestimo(tituloLivro, email);
+
 			break;
-		case 6;
+	
+		case 6:
+			cout << "\nTitulo: " << endl;
+			cin.clear();
+			cin.ignore();
+			getline (cin, tituloLivro);
+			livros.realizarDevolucao(tituloLivro);
 			break;
-		*/
+		
 		case 7:
+			cout << "Programa encerrado!" << endl;
 			break;
 
 		default:
+			while(cin.fail() || cin.bad()){
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			}
 			cout << "Operacao invalida, escolha uma operacao existente. " << endl;
-			cin.clear();
-			cin.ignore();
+			opcao_menu = 0;
 		}
 	}
 	return 0;
