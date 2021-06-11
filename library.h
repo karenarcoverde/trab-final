@@ -25,6 +25,8 @@ class Library{
 		void pesquisaNomeLivroLike (string); //busca nome que contenha a string
 		void realizarEmprestimo(string, string);
 		void realizarDevolucao(string);
+		void pesquisaEmail (string);
+		void pesquisaGenero (string);
 
 	private:
 		sqlite3* library;
